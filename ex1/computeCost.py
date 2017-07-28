@@ -15,7 +15,14 @@ def computeCost(X, y, theta):
 
 # =========================================================================
 
-    # Switch to np matrices
+    # Use ndarrays
+    h_theta = np.dot(X, theta)
+    J = sum(np.square(h_theta - y)) / (2 * m )
+
+    return J
+
+'''
+    # Use np matrices instead 
     X_mat = np.matrix(X)
     y_mat = np.matrix(y)
     theta_mat = np.matrix(theta)
@@ -24,5 +31,4 @@ def computeCost(X, y, theta):
     h_theta_mat = X_mat * theta_mat.transpose()
 
     J = sum(np.square(h_theta_mat - y_mat.transpose())) / (2 * m)
-
-    return J
+'''
