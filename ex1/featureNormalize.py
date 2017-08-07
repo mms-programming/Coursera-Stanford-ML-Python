@@ -27,5 +27,9 @@ def featureNormalize(X):
 
 
 # ============================================================
+    # https://stackoverflow.com/questions/26333005/numpy-subtract-every-row-of-matrix-by-vector
+    mu = X.mean(axis=0)
+    sigma = X.std(axis=0)
+    X_norm = (X - mu) / sigma
 
     return X_norm, mu, sigma
