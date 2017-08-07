@@ -1,6 +1,7 @@
 from computeCost import computeCost
+import numpy as np
 
-
+# NOTE: X, y, and theta are all ndarrays
 def gradientDescent(X, y, theta, alpha, num_iters):
     """
      Performs gradient descent to learn theta
@@ -26,5 +27,7 @@ def gradientDescent(X, y, theta, alpha, num_iters):
 
         # Save the cost J in every iteration
         J_history.append(computeCost(X, y, theta))
+        inside = np.dot(X, theta) - y
+        theta = theta - alpha / m * np.dot(inside, X)
 
     return theta, J_history
