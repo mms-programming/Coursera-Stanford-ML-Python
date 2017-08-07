@@ -1,3 +1,5 @@
+import numpy as np
+
 def computeCostMulti(X, y, theta):
     """
      Compute cost for linear regression with multiple variables
@@ -12,5 +14,9 @@ def computeCostMulti(X, y, theta):
 
 
 # =========================================================================
+
+    # Use ndarrays
+    h_theta = np.dot(X, theta)
+    J = sum(np.square(h_theta - y)) / (2 * m )
 
     return J
