@@ -22,7 +22,7 @@ def computeCost(X, y, theta):
     return J
 
 '''
-    # Use np matrices instead 
+    # Use np matrices instead
     X_mat = np.matrix(X)
     y_mat = np.matrix(y)
     theta_mat = np.matrix(theta)
