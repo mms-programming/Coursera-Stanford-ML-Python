@@ -1,5 +1,5 @@
 from costFunction import costFunction
-
+import numpy as np
 
 def costFunctionReg(theta, X, y, Lambda):
     """
@@ -8,6 +8,11 @@ def costFunctionReg(theta, X, y, Lambda):
     computes the cost of using theta as the parameter for regularized logistic regression and the
     gradient of the cost w.r.t. to the parameters.
     """
+
+    # X = np.array([[1, 8, 1, 6],[1, 3, 5, 7],[1, 4, 9, 2]]);
+    # y = np.array([1, 0, 1]);
+    # theta = np.array([-2, -1, 1, 2]);
+
     # Initialize some useful values
     m = len(y)   # number of training examples
 
@@ -19,4 +24,7 @@ def costFunctionReg(theta, X, y, Lambda):
 
 # =============================================================
 
-    return J
+    regular_cf = costFunction(theta, X, y)
+    regularization = Lambda * np.sum(np.square(theta[1:])) / (2.0 * m)
+
+    return regular_cf + regularization

@@ -1,7 +1,7 @@
 from numpy import asfortranarray, squeeze, asarray
 
 from gradientFunction import gradientFunction
-
+import numpy as np
 
 def gradientFunctionReg(theta, X, y, Lambda):
     """
@@ -19,5 +19,8 @@ def gradientFunctionReg(theta, X, y, Lambda):
 
 
 # =============================================================
+
+    grad = gradientFunction(theta, X, y)
+    grad[1:] = grad[1:] + np.dot(Lambda, theta[1:]) / m
 
     return grad
