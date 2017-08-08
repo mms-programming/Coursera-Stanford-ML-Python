@@ -17,11 +17,11 @@ def lrCostFunction(theta, X, y, Lambda):
 #
 #       Each row of the resulting matrix will contain the value of the
 #       prediction for that example. You can make use of this to vectorize
-#       the cost function and gradient computations. 
+#       the cost function and gradient computations.
 #
 
 
 
     # =============================================================
-
-    return J
+    
+    return costFunctionReg(theta, X, y, Lambda)
