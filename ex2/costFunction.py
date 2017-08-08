@@ -1,10 +1,15 @@
 from numpy import log
 from sigmoid import sigmoid
+import numpy as np
 
 def costFunction(theta, X,y):
     """ computes the cost of using theta as the
     parameter for logistic regression and the
     gradient of the cost w.r.t. to the parameters."""
+
+    # X = np.array([[1, 8, 1, 6],[1, 3, 5, 7],[1, 4, 9, 2]]);
+    # y = np.array([1, 0, 1]);
+    # theta = np.array([-2, -1, 1, 2]);
 
 # Initialize some useful values
     m = y.size # number of training examples
