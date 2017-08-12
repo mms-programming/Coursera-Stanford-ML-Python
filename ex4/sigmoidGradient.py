@@ -1,4 +1,5 @@
 from ex2.sigmoid import sigmoid
+import numpy as np
 
 def sigmoidGradient(z):
     """computes the gradient of the sigmoid function
@@ -12,5 +13,5 @@ def sigmoidGradient(z):
 
 
 # =============================================================
-
-    return g
+    # Note for matrix you need do elementwise multiplication
+    return np.multiply(sigmoid(z), 1 - sigmoid(z))
