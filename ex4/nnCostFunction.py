@@ -135,6 +135,12 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
     Theta1_grad = Delta1 / m
     Theta2_grad = Delta2 / m
 
+    '''
+      Backpropagation with regularization
+    '''
+    Theta1_grad = np.column_stack((Theta1_grad[:,0], Theta1_grad[:,1:] + Theta1[:,1:] * Lambda / m))
+    Theta2_grad = np.column_stack((Theta2_grad[:,0], Theta2_grad[:,1:] + Theta2[:,1:] * Lambda / m))
+
     # Unroll gradient
     grad = np.hstack((Theta1_grad.T.ravel(), Theta2_grad.T.ravel()))
 
