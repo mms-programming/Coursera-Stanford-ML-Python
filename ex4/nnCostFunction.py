@@ -43,14 +43,15 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
 
     # Calculate the hidden_layer values for all training examples
     # Don't forget to sigmoid the output!
-    hidden_layer = sigmoid(np.dot(X, Theta1.transpose()))
+    z2 = np.dot(X, Theta1.transpose())
+    hidden_layer = sigmoid(z2)
 
     # Add ones to the hidden layer for the basis
-    hidden_layer = np.column_stack((np.ones(m), hidden_layer))
+    hidden_layer_bias = np.column_stack((np.ones(m), hidden_layer))
 
     # Calculate the otuput values for all training examples
     # Don't forget to sigmoid the output!
-    output = sigmoid(np.dot(hidden_layer, Theta2.transpose()))
+    output = sigmoid(np.dot(hidden_layer_bias, Theta2.transpose()))
 
     '''
       Iterative approach. For each training example (row) we will convert
