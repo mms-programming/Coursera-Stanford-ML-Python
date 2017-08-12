@@ -12,7 +12,7 @@ def calculate_cost(output, value):
   part_A = np.multiply(np.dot(-1, value), np.log(output))
   part_B = np.multiply((1 - value), np.log(1 - output))
 
-  return np.sum(part_A) - np.sum(part_B)
+  return np.sum(part_A - part_B)
 
 #def calculate_regularization(Theta1_NBias, theta2_NBias):
 
