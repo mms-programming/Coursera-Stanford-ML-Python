@@ -14,7 +14,7 @@ def calculate_cost(output, value):
 
   return np.sum(part_A - part_B)
 
-def calculate_regularization(Theta1, Theta2):
+def calculate_regularization_sum(Theta1, Theta2):
   Theta1_NBias = np.delete(Theta1, 0, 1)
   Theta2_NBias = np.delete(Theta2, 0, 1)
 
@@ -26,7 +26,7 @@ def calculate_regularization(Theta1, Theta2):
 
   total_sum = (partA_sum + partB_sum)
 
-  return total_sum * Lambda / (2 * m)
+  return total_sum
 
 def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, Lambda):
 
@@ -81,7 +81,7 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
                    calculate_cost(output[row, :], convertLabelToVector(y[row], num_labels))
 
     regular_cost = total_cost / m
-    regularization = calculate_regularization(Theta1, Theta2)
+    regularization = calculate_regularization_sum(Theta1, Theta2) * Lambda / (2 * m)
 
     J = regular_cost + regularization
 # ====================== YOUR CODE HERE ======================
