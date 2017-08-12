@@ -121,8 +121,22 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
 
     # =========================================================================
 
+    '''
+      Backpropagation code. This was figured out using the helpful guide
+      found here: https://www.coursera.org/learn/machine-learning/discussions/all/threads/a8Kce_WxEeS16yIACyoj1Q
+    '''
+    vectorized_y = np.eye(num_labels)[y - 1, :]
+    delta3 = output - vectorized_y
+    delta2 = np.multiply(np.dot(delta3, Theta2[:,1:]), sigmoidGradient(z2))
+
+    Delta1 = np.dot(delta2.transpose(), X)
+    Delta2 = np.dot(delta3.transpose(), hidden_layer_bias)
+
+    Theta1_grad = Delta1 / m
+    Theta2_grad = Delta2 / m
+
     # Unroll gradient
-    grad = 0 #np.hstack((Theta1_grad.T.ravel(), Theta2_grad.T.ravel()))
+    grad = np.hstack((Theta1_grad.T.ravel(), Theta2_grad.T.ravel()))
 
 
     return J, grad
