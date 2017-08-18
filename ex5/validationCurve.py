@@ -18,24 +18,24 @@ def validationCurve(X, y, Xval, yval):
     error_val = np.zeros(lambda_vec.size)
 
 # ====================== YOUR CODE HERE ======================
-# Instructions: Fill in this function to return training errors in 
-#               error_train and the validation errors in error_val. The 
-#               vector lambda_vec contains the different lambda parameters 
-#               to use for each calculation of the errors, i.e, 
-#               error_train(i), and error_val(i) should give 
-#               you the errors obtained after training with 
+# Instructions: Fill in this function to return training errors in
+#               error_train and the validation errors in error_val. The
+#               vector lambda_vec contains the different lambda parameters
+#               to use for each calculation of the errors, i.e,
+#               error_train(i), and error_val(i) should give
+#               you the errors obtained after training with
 #               lambda = lambda_vec(i)
 #
 # Note: You can loop over lambda_vec with the following:
 #
 #       for i = 1:length(lambda_vec)
 #           lambda = lambda_vec(i)
-#           # Compute train / val errors when training linear 
+#           # Compute train / val errors when training linear
 #           # regression with regularization parameter lambda
 #           # You should store the result in error_train(i)
 #           # and error_val(i)
 #           ....
-#           
+#
 #       end
 #
 #
@@ -43,5 +43,9 @@ def validationCurve(X, y, Xval, yval):
 
 
 # =========================================================================
+    for i, Lambda in enumerate(lambda_vec):
+      theta = trainLinearReg(X, y, Lambda)
+      error_train[i] = linearRegCostFunction(X, y, theta, 0)[0]
+      error_val[i] = linearRegCostFunction(Xval, yval, theta, 0)[0]
 
     return lambda_vec, error_train, error_val
