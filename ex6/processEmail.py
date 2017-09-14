@@ -105,6 +105,11 @@ def processEmail(email_contents):
         #       str2). It will return 1 only if the two strings are equivalent.
         #
 
+        try:
+            index_element = vocabList.index(str)
+            word_indices.append(index_element)
+        except ValueError:
+            continue
 
 
 
@@ -121,4 +126,3 @@ def processEmail(email_contents):
 # Print footer
     print '\n========================='
     return word_indices
-

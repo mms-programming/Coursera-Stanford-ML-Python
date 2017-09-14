@@ -3,7 +3,7 @@
 #
 #  Instructions
 #  ------------
-# 
+#
 #  This file contains code that helps you get started on the
 #  exercise. You will need to complete the following functions:
 #
@@ -24,16 +24,17 @@ from dataset3Params import dataset3Params
 from plotData import plotData
 from visualizeBoundary import visualizeBoundary
 from visualizeBoundaryLinear import visualizeBoundaryLinear
+from gaussianKernel import gaussianKernel
 
 ## =============== Part 1: Loading and Visualizing Data ================
-#  We start the exercise by first loading and visualizing the dataset. 
+#  We start the exercise by first loading and visualizing the dataset.
 #  The following code will load the dataset into your environment and plot
 #  the data.
 #
 
 print 'Loading and Visualizing Data ...'
 
-# Load from ex6data1: 
+# Load from ex6data1:
 # You will have X, y in your environment
 data = scipy.io.loadmat('ex6data1.mat')
 X = data['X']
@@ -76,10 +77,11 @@ print 'Evaluating the Gaussian Kernel ...'
 x1 = np.array([1, 2, 1])
 x2 = np.array([0, 4, -1])
 sigma = 2
-# sim = gaussianKernel(x1, x2, sigma)
-#
-# print 'Gaussian Kernel between x1 = [1 2 1], x2 = [0 4 -1], sigma = %0.5f : ' \
-#        '\t%f\n(this value should be about 0.324652)\n' % (sigma, sim)
+sim = gaussianKernel(x1, x2, sigma)
+
+
+print 'Gaussian Kernel between x1 = [1 2 1], x2 = [0 4 -1], sigma = %0.5f : ' \
+       '\t%f\n(this value should be about 0.324652)\n' % (sigma, sim)
 
 raw_input("Program paused. Press Enter to continue...")
 
@@ -168,4 +170,3 @@ model = clf.fit(X, y)
 visualizeBoundary(X, y, model)
 
 raw_input("Program paused. Press Enter to continue...")
-
