@@ -22,4 +22,10 @@ def gaussianKernel(x1, x2, sigma):
 
 
 # =============================================================
+
+    # Keys to remember
+    # 1. np.power for exponents
+    # 2. float when it comes to multiplication and divison
+    sim = np.exp(-1.0 * np.sum(np.square(x1-x2)) / (2 * np.power(sigma, 2)))
+
     return sim
