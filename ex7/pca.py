@@ -9,6 +9,13 @@ def pca(X):
     # Useful values
     m, n = X.shape
 
+    cov_mat2 = 1.0 / m * np.dot(X.transpose(), X)
+
+    U, S, V = np.linalg.svd(cov_mat2)
+
+    # U = cov_mat2
+    # V, S = np.linalg.eig(U)
+    #U, S, V = np.linalg.svd(cov_mat2)
     # You need to return the following variables correctly.
 
     # ====================== YOUR CODE HERE ======================
@@ -22,4 +29,4 @@ def pca(X):
 
 
 # =========================================================================
-    return U, S, V
+    return U, np.diag(S), V

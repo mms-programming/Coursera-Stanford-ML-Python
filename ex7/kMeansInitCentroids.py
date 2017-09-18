@@ -16,4 +16,8 @@ def kMeansInitCentroids(X, K):
 
 
 # =============================================================
+
+    # https://stackoverflow.com/questions/14262654/numpy-get-random-set-of-rows-from-2d-array
+    centroids = X[np.random.choice(X.shape[0], K, replace=False), :]
+    print(centroids)
     return centroids

@@ -25,9 +25,13 @@ def computeCentroids(X, idx, K):
 #               centroid i.
 #
 # Note: You can use a for-loop over the centroids to compute this.
-# 
+#
 
 
 # =============================================================
+    for i, centroid in enumerate(range(K)):
+      elements = X[idx == centroid]
+      average = np.mean(elements, axis=0)
+      centroids.append(average)
 
     return centroids
