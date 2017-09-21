@@ -22,6 +22,9 @@ def estimateGaussian(X):
 
 # =============================================================
 
+    # https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.mean.html
+    # https://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.var.html
+    mu = np.mean(X, axis=0)
+    sigma2 = np.var(X, axis=0)
+    
     return mu, sigma2
-
-

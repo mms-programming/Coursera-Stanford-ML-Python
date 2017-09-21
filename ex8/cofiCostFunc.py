@@ -9,11 +9,28 @@ def cofiCostFunc(params, Y, R, num_users, num_movies, num_features, Lambda):
     X = np.array(params[:num_movies*num_features]).reshape(num_features, num_movies).T.copy()
     Theta = np.array(params[num_movies*num_features:]).reshape(num_features, num_users).T.copy()
 
+    Theta_X = np.dot(X, Theta.T)
+    R_ints = R.astype(int)
+    #Matrix dot product is *
+    actual_results = Theta_X * R_ints
+    # Need to fix the issue that Y is non-zero for movies that a user has not rated
+    Y_results = Y * R_ints
 
     # You need to return the following values correctly
-    J = 0
+    computation = actual_results - Y_results
+    J = np.sum(np.sum((computation) ** 2)) / 2
+
     X_grad = np.zeros(X.shape)
     Theta_grad = np.zeros(Theta.shape)
+
+    X_grad = np.dot(computation, Theta) + Lambda * X
+    Theta_grad = np.dot(computation.T, X) + Lambda * Theta 
+
+    J = J + Lambda / 2.0 * (np.sum(np.sum(np.power(Theta, 2))) +
+                             np.sum(np.sum(np.power(X, 2))))
+
+
+
 
     # ====================== YOUR CODE HERE ======================
     # Instructions: Compute the cost function and gradient for collaborative

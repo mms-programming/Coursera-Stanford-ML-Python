@@ -10,10 +10,22 @@ def selectThreshold(yval, pval):
 
     bestEpsilon = 0
     bestF1 = 0
+    F1 = 0
 
     stepsize = (np.max(pval) - np.min(pval)) / 1000.0
     for epsilon in np.arange(np.min(pval),np.max(pval), stepsize):
+        predictions = (pval < epsilon)
+        predictions = predictions.astype(int)
 
+        TP = np.sum(np.logical_and((predictions == True), (yval == True)).astype(int))
+        TN = np.sum(np.logical_and((predictions == False), (yval == False)).astype(int))
+        FP = np.sum(np.logical_and((predictions == True), (yval == False)).astype(int))
+        FN = np.sum(np.logical_and((predictions == False), (yval == True)).astype(int))
+        
+        precision = TP * 1.0 / (TP + FP)
+        recall = TP * 1.0 / (TP + FN)
+
+        F1 = 2 * precision * recall / (precision + recall)
         # ====================== YOUR CODE HERE ======================
         # Instructions: Compute the F1 score of choosing epsilon as the
         #               threshold and place the value in F1. The code at the
@@ -32,9 +44,3 @@ def selectThreshold(yval, pval):
            bestEpsilon = epsilon
 
     return bestEpsilon, bestF1
-
-
-
-
-
-
