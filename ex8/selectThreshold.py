@@ -15,13 +15,15 @@ def selectThreshold(yval, pval):
     stepsize = (np.max(pval) - np.min(pval)) / 1000.0
     for epsilon in np.arange(np.min(pval),np.max(pval), stepsize):
         predictions = (pval < epsilon)
+        # https://stackoverflow.com/questions/17506163/how-to-convert-a-boolean-array-to-an-int-array
         predictions = predictions.astype(int)
 
+        # https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.logic.html
         TP = np.sum(np.logical_and((predictions == True), (yval == True)).astype(int))
         TN = np.sum(np.logical_and((predictions == False), (yval == False)).astype(int))
         FP = np.sum(np.logical_and((predictions == True), (yval == False)).astype(int))
         FN = np.sum(np.logical_and((predictions == False), (yval == True)).astype(int))
-        
+
         precision = TP * 1.0 / (TP + FP)
         recall = TP * 1.0 / (TP + FN)
 
